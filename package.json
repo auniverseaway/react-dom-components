@@ -1,0 +1,28 @@
+{
+    "name": "react-dom-components",
+    "version": "0.0.5",
+    "description": "Build data models for React Components using server-side DOM.",
+    "main": "./src/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:auniverseaway/react-dom-components.git"
+    },
+    "author": "Chris Millar",
+    "license": "Apache-2.0",
+    "devDependencies": {
+        "@babel/core": "^7.0.0-beta.34",
+        "@babel/preset-env": "^7.0.0-beta.34",
+        "@babel/preset-react": "^7.0.0-beta.34",
+        "babel-core": "^7.0.0-bridge.0",
+        "babel-eslint": "^7.2.3",
+        "babel-loader": "^8.0.0-beta.0",
+        "eslint": "^3.19.0",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "webpack": "^3.9.1"
+    }
+}
