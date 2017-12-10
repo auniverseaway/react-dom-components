@@ -6,10 +6,25 @@ export default class DOMModel {
     constructor(element) {
         this.props = {};
         this.element = element;
+        this.getId();
+        this.getClassList();
+        this.getChildNodes();
+    }
+
+    getId() {
+        this.props.id = this.element.id;
+    }
+
+    getClassList() {
+        this.props.classList = this.element.classList;
     }
 
     getDataAttribute(name) {
         this.props[name] = this.element.dataset[name];
+    }
+
+    getAttribute(name) {
+        this.props[name] = this.element.getAttribute(name);
     }
 
     getTextContent() {
@@ -30,12 +45,25 @@ export default class DOMModel {
         }
     }
 
-    getChildNode(name) {
-        const nodes = this.element.childNodes;
-        for (let i = 0; i < nodes.length; ++i) {
-            const nodeName = nodes[i].nodeName.toLowerCase();
+    getChildComponentArray(name, model) {
+        this.props[name] = [];
+        for (let i = 0; i < this.nodes.length; ++i) {
+            const nodeName = this.nodes[i].nodeName.toLowerCase();
             if (nodeName === name) {
-                return nodes[i];
+                this.props[name].push(new model(this.nodes[i]));
+            }
+        }
+    }
+
+    getChildNodes() {
+        this.nodes = this.element.childNodes;
+    }
+
+    getChildNode(name) {
+        for (let i = 0; i < this.nodes.length; ++i) {
+            const nodeName = this.nodes[i].nodeName.toLowerCase();
+            if (nodeName === name) {
+                return this.nodes[i];
             }
         }
         return null;
