@@ -1,5 +1,5 @@
-import DOMRegistry from './domcomponent/DOMRegistry';
-import DOMComponent from './domcomponent/DOMComponent';
 import DOMModel from './dommodel/DOMModel';
+import DOMComponent from './domcomponent/DOMComponent'
+import DOMRegistry from './domregistry/DOMRegistry';
 
-export { DOMRegistry, DOMComponent, DOMModel };
+export { DOMModel, DOMComponent, DOMRegistry };

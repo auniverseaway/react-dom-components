@@ -16,6 +16,9 @@ React DOM Components are a technology agnostic way to get DOM properties (attrib
     npm i -D react-dom-components
 
 ## Usage
+### Sample Project
+For the sake of seeing a real world use case, please see the [React DOM Components Sample](https://github.com/auniverseaway/react-dom-components-sample) project.
+
 ### DOM Component
 The first thing to build is a React DOM Component. 
 

@@ -1,28 +1,41 @@
 {
     "name": "react-dom-components",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "Build data models for React Components using server-side DOM.",
-    "main": "./src/index.js",
+    "main": "lib/index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "webpack"
+        "build": "babel -d lib/ src/",
+        "prepublishOnly": "npm run build"
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:auniverseaway/react-dom-components.git"
+        "url": "git+github.com:auniverseaway/react-dom-components.git"
     },
-    "author": "Chris Millar",
+    "keywords": [
+        "react",
+        "component",
+        "dom",
+        "props"
+    ],
+    "author": "Chris Millar <chris@millr.org>",
     "license": "Apache-2.0",
-    "devDependencies": {
-        "@babel/core": "^7.0.0-beta.34",
-        "@babel/preset-env": "^7.0.0-beta.34",
-        "@babel/preset-react": "^7.0.0-beta.34",
-        "babel-core": "^7.0.0-bridge.0",
-        "babel-eslint": "^7.2.3",
-        "babel-loader": "^8.0.0-beta.0",
-        "eslint": "^3.19.0",
+    "bugs": {
+        "url": "https://github.com/auniverseaway/react-dom-components/issues"
+    },
+    "homepage": "https://github.com/auniverseaway/react-dom-components#readme",
+    "peerDependencies": {
         "react": "^16.2.0",
-        "react-dom": "^16.2.0",
-        "webpack": "^3.9.1"
+        "react-dom": "^16.2.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.0.0-beta.35",
+        "@babel/core": "^7.0.0-beta.35",
+        "@babel/preset-env": "^7.0.0-beta.35",
+        "@babel/preset-react": "^7.0.0-beta.35",
+        "@babel/preset-stage-0": "^7.0.0-beta.35",
+        "babel-cli": "^7.0.0-beta.3",
+        "babel-core": "^7.0.0-bridge.0",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0"
     }
 }
