@@ -51,6 +51,11 @@ hr {
 
 .full-width {
     flex: 0 0 100%;
+    width: 100%;
+}
+
+img.full-width {
+    margin-bottom: 20px;
 }
 
 rdc-section {
