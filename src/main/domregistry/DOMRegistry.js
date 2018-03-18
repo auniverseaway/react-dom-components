@@ -6,6 +6,7 @@
 export default class DOMRegistry {
     constructor(components) {
         this.components = components;
+        this.renderedComponents = [];
         this.getNodeNames();
         this.init();
     }
@@ -15,7 +16,7 @@ export default class DOMRegistry {
      */
     init() {
         // Loop through all registred DOM Components
-        this.components.forEach(component => {
+        this.components.forEach((component, index) => {
             // Find all potential nodes of the components
             const componentNodes = document.querySelectorAll(component.nodeName);
 
@@ -23,7 +24,7 @@ export default class DOMRegistry {
             componentNodes.forEach(componentNode => {
                 const canRender = this.traverseUpDom(componentNode);
                 if (canRender) {
-                    component.render(componentNode);
+                    this.renderedComponents[index] = component.render(componentNode);
                 }
             });
         });
@@ -61,5 +62,13 @@ export default class DOMRegistry {
         } else {
             return false;
         }
+    }
+
+    /**
+     * Get a rendered react component
+     * @return {React.Component} component The rendered component
+     */
+    getRenderedComponent(index) {
+        return this.renderedComponents[index];
     }
 }

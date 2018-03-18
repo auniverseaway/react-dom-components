@@ -29,6 +29,6 @@ export default class DOMComponent {
         const el = React.createElement(this.component, this.props);
 
         // Render it
-        render(el, element);
+        return render(el, element);
     }
 }
