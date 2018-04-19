@@ -19,10 +19,6 @@ export default class DOMModel {
         this.props.classList = this.element.classList;
     }
 
-    getDataAttribute(name) {
-        this.props[name] = this.element.dataset[name];
-    }
-
     getAttribute(name) {
         this.props[name] = this.element.getAttribute(name);
     }
@@ -36,7 +32,7 @@ export default class DOMModel {
         }
     }
 
-    getChildComponent(name, model) {
+    getChildDOMModel(name, model) {
         const childElement = this.getChildNode(name);
         if (childElement !== null) {
             this.props[name] = new model(childElement);
@@ -45,7 +41,7 @@ export default class DOMModel {
         }
     }
 
-    getChildComponentArray(name, model) {
+    getChildDOMModelArray(name, model) {
         this.props[name] = [];
         for (let i = 0; i < this.nodes.length; ++i) {
             const nodeName = this.nodes[i].nodeName.toLowerCase();

@@ -1,40 +1,46 @@
 {
     "name": "react-dom-components",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Build data models for React Components using server-side DOM.",
     "main": "lib/index.js",
     "scripts": {
-        "start": "node --require @babel/register index.js",
-        "start-sample": "npm run build-sample && node --require @babel/register sample/index.js",
-        "build": "babel -d lib/ src/main/",
-        "build-sample": "webpack --config sample/webpack.config.js",
-        "test": "mocha --require @babel/register src/test/app.js",
-        "test-win": "TEST_BROWSER=win npm test",
-        "test-mac": "TEST_BROWSER=mac npm test",
-        "test-sauce": "TEST_BROWSER=sauce npm test"
+        "build": "babel -d lib/ src/",
+        "prepublishOnly": "npm run build"
     },
-    "author": "Chris Millar <chris@millr.org>",
     "repository": {
         "type": "git",
-        "url": "git@github.com:auniverseaway/react-dom-components.git"
+        "url": "git+github.com:auniverseaway/react-dom-components.git"
     },
-    "license": "ISC",
-    "devDependencies": {
-        "@babel/cli": "^7.0.0-beta.37",
-        "@babel/core": "^7.0.0-beta.37",
-        "@babel/preset-env": "^7.0.0-beta.37",
-        "@babel/preset-react": "^7.0.0-beta.37",
-        "@babel/preset-stage-0": "^7.0.0-beta.37",
-        "@babel/register": "^7.0.0-beta.37",
+    "keywords": [
+        "react",
+        "component",
+        "dom",
+        "props"
+    ],
+    "author": "Chris Millar <chris@millr.org>",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/auniverseaway/react-dom-components/issues"
+    },
+    "homepage": "https://github.com/auniverseaway/react-dom-components#readme",
+    "peerDependencies": {
+        "@babel/core": "^7.0.0-beta.39",
+        "@babel/preset-env": "^7.0.0-beta.39",
+        "@babel/preset-react": "^7.0.0-beta.39",
+        "@babel/preset-stage-0": "^7.0.0-beta.39",
         "babel-core": "^7.0.0-bridge.0",
-        "babel-loader": "^8.0.0-beta.0",
-        "chai": "^4.1.2",
-        "express": "^4.16.2",
-        "mocha": "^4.0.1",
         "react": "^16.2.0",
-        "react-dom": "^16.2.0",
-        "saucelabs": "^1.4.0",
-        "selenium-webdriver": "^3.6.0",
-        "webpack": "^3.10.0"
+        "react-dom": "^16.2.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.0.0-beta.39",
+        "@babel/core": "^7.0.0-beta.39",
+        "@babel/preset-env": "^7.0.0-beta.39",
+        "@babel/preset-react": "^7.0.0-beta.39",
+        "@babel/preset-stage-0": "^7.0.0-beta.39",
+        "babel-cli": "^7.0.0-beta.3",
+        "babel-core": "^7.0.0-bridge.0",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0"
     }
 }

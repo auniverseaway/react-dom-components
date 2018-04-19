@@ -12,6 +12,10 @@ React DOM Components are a technology agnostic way to get DOM properties (attrib
 * React & React DOM
 * Custom Element Polyfill
 
+## Version History
+### 0.1.0
+* Support for mutation observer to watch for server-side changes to DOM.
+
 ## Installation
     npm i -D react-dom-components
 
