@@ -5,40 +5,57 @@
  * a registered DOM Component is a child of an existing DOM Component.
  */
 export default class DOMRegistry {
-    constructor(components) {
+    constructor(element) {
+        this.element = this.getParentNode(element);
+    }
+
+    getParentNode(element) {
+        return element ? element : document;
+    }
+
+    register(components) {
         this.components = components;
         this.getNodeNames();
-        this.init(document);
-        this.watch();
+        this.init();
+    }
+
+    /**
+     * Render the component. If an element is not supplied,
+     * the element class property will be used to find all
+     * nodes to be rendered.
+     * @param {DOMComponent} component
+     * @param {HTMLElement} element
+     */
+    render(component, element) {
+        if (element) {
+            component.render(element);
+        }
+        else {
+            this.renderAll(component);
+        }
     }
 
     /**
      * Initialize the DOM Registry.
      */
-    init(parentNode) {
+    init() {
         // Loop through all registred DOM Components
-        this.components.forEach((component) => {
-            // Find all potential nodes of the components
-            const componentNodes = parentNode.querySelectorAll(component.nodeName);
-
-            // Loop through each node and determine if we can render it.
-            componentNodes.forEach((componentNode) => {
-                const canRender = this.traverseUpDom(componentNode);
-                if (canRender) {
-                    component.render(componentNode);
-                }
-            });
+        const compArray = Object.keys(this.components);
+        compArray.forEach((name) => {
+            this.renderAll(this.components[name]);
         });
     }
 
-    /**
-     * Create an array of element node names to look for.
-     * @return {array} nodeNames
-     */
-    getNodeNames() {
-        this.nodeNames = {};
-        this.components.forEach((component) => {
-            this.nodeNames[component.nodeName] = true;
+    renderAll(component) {
+        // Find all potential nodes of the components
+        const componentNodes = this.element.querySelectorAll(component.nodeName);
+
+        // Loop through each node and determine if we can render it.
+        componentNodes.forEach((componentNode) => {
+            const canRender = this.traverseUpDom(componentNode);
+            if (canRender) {
+                component.render(componentNode);
+            }
         });
     }
 
@@ -64,32 +81,13 @@ export default class DOMRegistry {
     }
 
     /**
-     * Watch for changes on the body. If the change meets
-     * the criteria, determine if it should be re-rendered.
+     * Create an array of element node names to look for.
+     * @return {array} nodeNames
      */
-    watch() {
-        const body = document.querySelector('body');
-        const config = {
-            childList: true,
-            subtree: true,
-        };
-
-        const callback = (mutationsList) => {
-            mutationsList.forEach((mutation) => {
-                // This will only work for AEM
-                if (mutation.removedNodes.length === 1) {
-                    const { addedNodes } = mutation;
-                    addedNodes.forEach((addedNode) => {
-                        if (addedNode.nodeType === 1) {
-                            this.init(addedNode);
-                        }
-                    });
-                }
-            });
-        };
-
-        // Create an observer instance linked to the callback function
-        const observer = new MutationObserver(callback);
-        observer.observe(body, config);
+    getNodeNames() {
+        this.nodeNames = {};
+        this.components.forEach((component) => {
+            this.nodeNames[component.nodeName] = true;
+        });
     }
 }

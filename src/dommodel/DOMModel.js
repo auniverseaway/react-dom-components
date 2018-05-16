@@ -19,8 +19,15 @@ export default class DOMModel {
         this.props.classList = this.element.classList;
     }
 
-    getAttribute(name) {
-        this.props[name] = this.element.getAttribute(name);
+    getDataAttribute(name) {
+        this.props[name] = this.element.dataset[name];
+    }
+
+    getAttribute(name, propName) {
+        if (!propName) {
+            propName = name;
+        }
+        this.props[propName] = this.element.getAttribute(name);
     }
 
     getTextContent() {

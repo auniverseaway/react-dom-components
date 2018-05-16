@@ -8,10 +8,16 @@ import { render } from 'react-dom';
  * element to render.
  */
 export default class DOMComponent {
-    constructor() {
-        this.nodeName = this.constructor.nodeName;
-        this.model = this.constructor.model;
-        this.component = this.constructor.component;
+    getNodeName(nodeName) {
+        return nodeName;
+    }
+
+    getModel(model) {
+        return model;
+    }
+
+    getComponent(component) {
+        return component;
     }
 
     /**
