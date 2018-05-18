@@ -5,6 +5,9 @@ const BUILD_DIR = path.resolve(__dirname, 'dist');
 const APP_DIR = path.resolve(__dirname, 'src');
 
 const config = {
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
     entry: APP_DIR + '/index.js',
     output: {
         path: BUILD_DIR,
@@ -14,12 +17,9 @@ const config = {
     module : {
         loaders : [
             {
-                test : /\.js?/,
-                exclude: /node_modules\/(?!(react-dom-components)\/).*/,
-                loader : 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env', '@babel/preset-stage-0', '@babel/preset-react']
-                }
+                test: /(\.jsx$|\.js$)/,
+                exclude: /(node_modules)/,
+                loader : 'babel-loader'
             }
         ]
     }

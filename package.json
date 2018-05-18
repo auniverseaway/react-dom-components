@@ -1,11 +1,31 @@
 {
     "name": "react-dom-components",
-    "version": "0.2.0",
+    "version": "1.0.0",
     "description": "Build data models for React Components using server-side DOM.",
     "main": "lib/index.js",
     "scripts": {
         "build": "babel -d lib/ src/",
-        "prepublishOnly": "npm run build"
+        "prepublishOnly": "npm run build",
+        "test": "jest 2>&1",
+        "test-watch": "jest --watch",
+        "test-coverage": "jest --coverage"
+    },
+    "jest": {
+        "moduleDirectories": [
+            "node_modules"
+        ],
+        "moduleFileExtensions": [
+            "js",
+            "jsx"
+        ],
+        "testEnvironment": "jest-environment-jsdom-global",
+        "testPathIgnorePatterns": [
+            "node_modules"
+        ],
+        "transform": {
+            "\\.html$": "jest-raw-loader",
+            "^.+\\.jsx?$": "babel-jest"
+        }
     },
     "repository": {
         "type": "git",
@@ -24,23 +44,28 @@
     },
     "homepage": "https://github.com/auniverseaway/react-dom-components#readme",
     "peerDependencies": {
-        "@babel/core": "^7.0.0-beta.39",
-        "@babel/preset-env": "^7.0.0-beta.39",
-        "@babel/preset-react": "^7.0.0-beta.39",
-        "@babel/preset-stage-0": "^7.0.0-beta.39",
+        "@babel/core": "^7.0.0-beta.47",
+        "@babel/preset-env": "^7.0.0-beta.47",
+        "@babel/preset-react": "^7.0.0-beta.47",
+        "@babel/preset-stage-0": "^7.0.0-beta.47",
         "babel-core": "^7.0.0-bridge.0",
-        "react": "^16.2.0",
-        "react-dom": "^16.2.0"
+        "react": "^16.3.2",
+        "react-dom": "^16.3.2"
     },
     "devDependencies": {
-        "@babel/cli": "^7.0.0-beta.39",
-        "@babel/core": "^7.0.0-beta.39",
-        "@babel/preset-env": "^7.0.0-beta.39",
-        "@babel/preset-react": "^7.0.0-beta.39",
-        "@babel/preset-stage-0": "^7.0.0-beta.39",
+        "@babel/cli": "^7.0.0-beta.47",
+        "@babel/core": "^7.0.0-beta.47",
+        "@babel/preset-env": "^7.0.0-beta.47",
+        "@babel/preset-react": "^7.0.0-beta.47",
+        "@babel/preset-stage-0": "^7.0.0-beta.47",
         "babel-cli": "^7.0.0-beta.3",
         "babel-core": "^7.0.0-bridge.0",
-        "react": "^16.2.0",
-        "react-dom": "^16.2.0"
+        "babel-jest": "^22.4.3",
+        "jest": "^22.4.3",
+        "jest-environment-jsdom": "^22.4.3",
+        "jest-environment-jsdom-global": "^1.0.3",
+        "jest-raw-loader": "^1.0.1",
+        "react": "^16.3.2",
+        "react-dom": "^16.3.2"
     }
 }

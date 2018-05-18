@@ -69,7 +69,7 @@ export default class DOMRegistry {
         // If the DOM has already been swapped out by React, the parent node will be null.
         if (parentNode !== null) {
             const parentNodeName = parentNode.nodeName.toLowerCase();
-            if (this.nodeNames[parentNodeName]) {
+            if (this.nodeNames.includes(parentNodeName)) {
                 return false;
             } else if (parentNodeName === 'body') {
                 return true;
@@ -85,9 +85,10 @@ export default class DOMRegistry {
      * @return {array} nodeNames
      */
     getNodeNames() {
-        this.nodeNames = {};
-        this.components.forEach((component) => {
-            this.nodeNames[component.nodeName] = true;
+        this.nodeNames = [];
+        const compArray = Object.keys(this.components);
+        compArray.forEach((name) => {
+            this.nodeNames.push(this.components[name].nodeName);
         });
     }
 }

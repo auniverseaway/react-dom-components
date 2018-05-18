@@ -3,8 +3,5 @@ import RDCSectionDOM from './components/rdcSection/RDCSectionDOM';
 
 const rdcSection = new RDCSectionDOM();
 
-new DOMRegistry(
-    [
-        rdcSection
-    ]
-);
+const rdcRegistry = new DOMRegistry(document);
+rdcRegistry.register({ rdcSection });

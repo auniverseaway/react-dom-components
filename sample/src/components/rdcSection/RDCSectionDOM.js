@@ -1,4 +1,4 @@
-import { DOMModel, DOMComponent } from '../../../../lib/index';
+import { DOMModel, DOMComponent } from 'react-dom-components';
 import RDCSectionComponent from './RDCSectionComponent';
 
 class ParaModel extends DOMModel {
@@ -11,13 +11,16 @@ class ParaModel extends DOMModel {
 class RDCSectionModel extends DOMModel {
     constructor(element) {
         super(element);
-        this.getDataAttribute('title');
-        this.getChildComponent('p', ParaModel);
+        this.getAttribute('data-title', 'title');
+        this.getChildDOMModel('p', ParaModel);
     }
 }
 
 export default class RDCSectionDOM extends DOMComponent {
-    static get nodeName() { return 'rdc-section' }
-    static get model() { return RDCSectionModel }
-    static get component() { return RDCSectionComponent }
+    constructor() {
+        super();
+        this.nodeName = 'rdc-section';
+        this.model = RDCSectionModel;
+        this.component = RDCSectionComponent;
+    }
 }

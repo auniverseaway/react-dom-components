@@ -8,18 +8,6 @@ import { render } from 'react-dom';
  * element to render.
  */
 export default class DOMComponent {
-    getNodeName(nodeName) {
-        return nodeName;
-    }
-
-    getModel(model) {
-        return model;
-    }
-
-    getComponent(component) {
-        return component;
-    }
-
     /**
      * Render the DOM Component into the supplied element.
      * @param {node} element 

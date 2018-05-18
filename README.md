@@ -13,6 +13,12 @@ React DOM Components are a technology agnostic way to get DOM properties (attrib
 * Custom Element Polyfill
 
 ## Version History
+### 1.0.0
+* Changed API for DOM Registry
+* Changed API for DOM Component
+* Update to latest versions of React & Babel
+* Added a few unit tests
+
 ### 0.1.0
 * Support for mutation observer to watch for server-side changes to DOM.
 
@@ -35,9 +41,9 @@ For performance and semantic reasons, it's highly recommended to use custom elem
 
 ```js
 export default class HelloWorldDOMComponent extends DOMComponent {
-    static get nodeName() { return 'hello-world' }
-    static get model() { return HelloWorldModel }
-    static get component() { return HelloWorld }
+    this.nodeName = 'hello-world';
+    this.model = HelloWorldModel;
+    this.component = HelloWorld;
 }
 ```
 
@@ -49,9 +55,9 @@ class HelloWorldModel extends DOMModel {
     constructor(element) {
         super(element);
         this.getDataAttribute('name');
-        this.getDataAttribute('title');
+        this.getAttribute('data-title', 'title');
         this.getTextContent();
-        this.getChildComponent('foo', FooModel);
+        this.getChildDOMModel('foo', FooModel);
     }
 }
 ```
@@ -76,11 +82,11 @@ export default class HelloWorld extends React.Component {
     }
 
     render () {
-        return (<>
+        return (<React.Fragment>
             <p>{this.text} {this.name}</p>
             <p>{this.title}</p>
             <Foo text={this.fooText} />
-        </>);
+        </React.Fragment>);
     }
 }
 ```
@@ -94,12 +100,8 @@ element that matches the criteria.
 const helloWorld = new HelloWorldDOMComponent();
 const foo = new FooDOMComponent();
 
-new DOMRegistry(
-    [
-        helloWorld,
-        foo,
-    ]
-);
+const domRegistry = new DOMRegistry(document);
+domRegistry.register({ helloWorld, foo });
 ```
 
 If you have several nested React Components that happen to also be DOM Components (as in the case above), the registry will only render the React DOM Components that are not within an existing React DOM Component.

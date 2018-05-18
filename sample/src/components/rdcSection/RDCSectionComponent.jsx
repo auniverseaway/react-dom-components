@@ -6,14 +6,15 @@ export default class RDCSectionComponent extends React.Component {
         this.title = props.title;
         this.text = props.text;
         this.p = props.p;
+        console.log(props);
     }
 
     render () {
         return (
-            <React.Fragment>
+            <div>
                 <h3>{this.title}</h3>
                 <p>{this.p.props.text}</p>
-            </React.Fragment>
+            </div>
         );
     }
 }
