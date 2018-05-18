@@ -10,13 +10,13 @@ export default class DOMRegistry {
     }
 
     getParentNode(element) {
-        return element ? element : document;
+        return element || document;
     }
 
     register(components) {
         this.components = components;
         this.getNodeNames();
-        this.init();
+        this.init(this.element);
     }
 
     /**
@@ -29,26 +29,26 @@ export default class DOMRegistry {
     render(component, element) {
         if (element) {
             component.render(element);
-        }
-        else {
-            this.renderAll(component);
+        } else {
+            this.renderAll(this.element, component);
         }
     }
 
     /**
-     * Initialize the DOM Registry.
+     * Initialize the supplied element to find
+     * child components and render them.
      */
-    init() {
+    init(parentElement) {
         // Loop through all registred DOM Components
         const compArray = Object.keys(this.components);
         compArray.forEach((name) => {
-            this.renderAll(this.components[name]);
+            this.renderAll(parentElement, this.components[name]);
         });
     }
 
-    renderAll(component) {
+    renderAll(parentElement, component) {
         // Find all potential nodes of the components
-        const componentNodes = this.element.querySelectorAll(component.nodeName);
+        const componentNodes = parentElement.querySelectorAll(component.nodeName);
 
         // Loop through each node and determine if we can render it.
         componentNodes.forEach((componentNode) => {

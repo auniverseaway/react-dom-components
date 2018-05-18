@@ -1,6 +1,6 @@
 {
     "name": "react-dom-components",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Build data models for React Components using server-side DOM.",
     "main": "lib/index.js",
     "scripts": {

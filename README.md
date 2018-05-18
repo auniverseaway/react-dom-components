@@ -13,6 +13,9 @@ React DOM Components are a technology agnostic way to get DOM properties (attrib
 * Custom Element Polyfill
 
 ## Version History
+### 1.0.2
+* Small fixes to Registry
+
 ### 1.0.1
 * Add Babel Polyfill for IE11 support
 
