@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import DOMModel from './dommodel/DOMModel';
 import DOMComponent from './domcomponent/DOMComponent'
 import DOMRegistry from './domregistry/DOMRegistry';

@@ -6,7 +6,6 @@ export default class RDCSectionComponent extends React.Component {
         this.title = props.title;
         this.text = props.text;
         this.p = props.p;
-        console.log(props);
     }
 
     render () {
