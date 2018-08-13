@@ -1,4 +1,6 @@
-import 'babel-polyfill';
+if (!global || !global._babelPolyfill) {
+    require('babel-polyfill')
+}
 
 import DOMModel from './dommodel/DOMModel';
 import DOMComponent from './domcomponent/DOMComponent'

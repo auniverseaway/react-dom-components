@@ -51,12 +51,12 @@ export default class DOMRegistry {
         const componentNodes = parentElement.querySelectorAll(component.nodeName);
 
         // Loop through each node and determine if we can render it.
-        componentNodes.forEach((componentNode) => {
+        Array.prototype.forEach.call(componentNodes, function(componentNode) {
             const canRender = this.traverseUpDom(componentNode);
             if (canRender) {
                 component.render(componentNode);
             }
-        });
+        }.bind(this));
     }
 
     /**
