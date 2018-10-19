@@ -1,6 +1,6 @@
 {
     "name": "react-dom-components",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "Build data models for React Components using server-side DOM.",
     "main": "lib/index.js",
     "scripts": {
@@ -44,11 +44,6 @@
     },
     "homepage": "https://github.com/auniverseaway/react-dom-components#readme",
     "peerDependencies": {
-        "@babel/core": "7.0.0-beta.47",
-        "@babel/preset-env": "7.0.0-beta.47",
-        "@babel/preset-react": "7.0.0-beta.47",
-        "@babel/preset-stage-0": "7.0.0-beta.47",
-        "babel-core": "7.0.0-bridge.0",
         "react": "16.3.2",
         "react-dom": "16.3.2"
     },
