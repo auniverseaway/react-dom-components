@@ -3,7 +3,8 @@ if (!global || !global._babelPolyfill) {
 }
 
 import DOMModel from './dommodel/DOMModel';
-import DOMComponent from './domcomponent/DOMComponent'
 import DOMRegistry from './domregistry/DOMRegistry';
+import createRDC from './createRDC';
 
-export { DOMModel, DOMComponent, DOMRegistry };
+
+export { createRDC, DOMModel, DOMRegistry };

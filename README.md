@@ -37,81 +37,107 @@ React DOM Components are a technology agnostic way to get DOM properties (attrib
 
 ## Usage
 ### Sample Project
-For the sake of seeing a real world use case, please see the [React DOM Components Sample](https://github.com/auniverseaway/react-dom-components-sample) project.
+TBD
 
-### DOM Component
-The first thing to build is a React DOM Component. 
+### The DOM that will be used to create our components
+The following is some sample DOM that would be created server-side, which would then be scraped by React DOM Components to create a React Component on the page:
 
-For performance and semantic reasons, it's highly recommended to use custom element names. This requires a custom-element polyfill for most browsers.
-
-**Here you specify:**
-* The element name to look for in the DOM.
-* The DOMModel to be used with the element.
-* The React Component to render.
-
-```js
-export default class HelloWorldDOMComponent extends DOMComponent {
-    this.nodeName = 'hello-world';
-    this.model = HelloWorldModel;
-    this.component = HelloWorld;
-}
+```html
+<div>
+    <hello-world data-name="My Name" data-title="My Title">
+        Hi how are you doing?
+    </hello-world>
+</div>
 ```
 
 ### DOM Model
 The DOM Model is what maps DOM attributes, text content, and child elements to properties (`this.props`) on the React Component.
 
 ```js
+// file: HelloWorldModel.js
+import { DOMModel } from 'react-dom-components';
 class HelloWorldModel extends DOMModel {
     constructor(element) {
         super(element);
         this.getDataAttribute('name');
         this.getAttribute('data-title', 'title');
         this.getTextContent();
-        this.getChildDOMModel('foo', FooModel);
     }
 }
 ```
 
 In this example, we are using:
-* The `data-name` attribute
-* The `data-title` attribute
-* The text content
-* Mapping a custom child element to another DOM Model
+* The `data-name` attribute ("My Name")
+* The `data-title` attribute ("My Title")
+* The text content ("Hi how are you doing?")
 
 ### React Component
-The React Component is like any other vanilla React Component. Our props are merely properties we receive from our DOM Model. In the case of our child element, this is simply a child object with all the properties from the `FooModel`.
+The React Component is like any other vanilla React Component. Our props are merely properties we receive from our DOM Model.
 
 ```jsx
+// file: HelloWorld.jsx
 export default class HelloWorld extends React.Component {
     constructor(props) {
         super(props);
         this.name = props.name;
         this.title = props.title;
         this.text = props.text;
-        this.fooText = props.foo.props.text;
     }
 
     render () {
         return (<React.Fragment>
             <p>{this.text} {this.name}</p>
             <p>{this.title}</p>
-            <Foo text={this.fooText} />
         </React.Fragment>);
     }
 }
 ```
 **Note:** The above example uses React 16.2's new fragment syntax.
 
+### DOM Component
+The DOM Component is what React DOM Components uses to instantiate the React Component.
+
+For performance and semantic reasons, it's highly recommended to use custom element names. This requires a custom-element polyfill for most browsers.  Alternatively, class selectors can also be used, in which case the nodeName must be prefaced with a `.`.
+
+A special utility function `createRDC` is used to tie together the model and the react component defined above.
+
+**Here you specify:**
+* The element name (or selector) to look for in the DOM.
+* The DOMModel to be used with the element.
+* The React Component to render.
+
+The function signature is `createRDC(nodeName, model, component)`
+
+```js
+// file: helloWorldRDC.js
+import { createRDC } from 'react-dom-components';
+import HelloWorld from './HelloWorld'; // HelloWorld.jsx
+import HelloWorldModel from './HelloWorldModel';
+
+const helloWorldRDC = createRDC('hello-world', HelloWorldModel, HelloWorld);
+export default helloWorldRDC;
+```
+
+(Note that it is standard practice to define the Model and RDC in the same file, and the React component as a separate jsx file.  For the purposes of this sample, each has been defined in it's own file.)
+
 ### Registering a React DOM Component
 In order to efficiently discover our React DOM Components, we register each. This service finds all instances, determines if they should be rendered, and passes in the DOM
 element that matches the criteria.
 
-```js
-const helloWorld = new HelloWorldDOMComponent();
-const foo = new FooDOMComponent();
+Before we can register the components, the registry needs to be provided with the React object and ReactDOM.render function which are used to instantiate and render the RDC.
 
-const domRegistry = new DOMRegistry(document);
-domRegistry.register({ helloWorld, foo });
+```js
+// file: app.js
+import React from 'react';
+import { render } from 'react-dom';
+import { DOMRegistry } from 'react-dom-components';
+
+import helloWorldRDC from './helloWorldRDC';
+
+const domRegistry = new DOMRegistry(React, render);
+domRegistry.register({ helloWorldRDC });
+domRegistry.init(document); // init defaults to `document` if not no param is defined
+
 ```
 
-If you have several nested React Components that happen to also be DOM Components (as in the case above), the registry will only render the React DOM Components that are not within an existing React DOM Component.
+If you have several nested React Components that happen to also be DOM Components, the registry will only render the React DOM Components that are not within an existing React DOM Component.
