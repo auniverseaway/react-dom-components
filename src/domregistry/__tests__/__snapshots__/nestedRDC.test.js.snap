@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nested React Dom Component should render 1`] = `
+Array [
+  <h2>
+    <b>
+      My Title
+    </b>
+  </h2>,
+  <p>
+    Nested Title:
+  </p>,
+  <h2>
+    <b>
+      The Real Title
+    </b>
+  </h2>,
+  <p>
+    Hello World
+     
+    Name
+  </p>,
+]
+`;
