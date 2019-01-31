@@ -78,7 +78,7 @@ export default class DOMRegistry {
      * Render the component. If an element is not supplied,
      * the element class property will be used to find all
      * nodes to be rendered.
-     * @param {DOMComponent} component
+     * @param {DOMComponent} component - component to render
      * @param {HTMLElement} element
      */
     render(component, element) {
