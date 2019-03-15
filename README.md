@@ -13,6 +13,10 @@ React DOM Components are a technology agnostic way to get DOM properties (attrib
 * Custom Element Polyfill
 
 ## Version History
+### 2.0.0
+* API Change - Bring your own React Version - See docs below.
+* Updated dependencies
+
 ### 1.0.3
 * ForEach polyfill is no longer required for IE11 support.
 * Improvements around loading babel-polyfill.
