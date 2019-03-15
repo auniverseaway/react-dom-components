@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`React Dom Component Html DOM should be converted to a react component 1`] = `
+Array [
+  <p>
+    Hello World
+     
+    Name
+  </p>,
+  <p>
+    My Title
+  </p>,
+]
+`;

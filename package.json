@@ -43,10 +43,6 @@
         "url": "https://github.com/auniverseaway/react-dom-components/issues"
     },
     "homepage": "https://github.com/auniverseaway/react-dom-components#readme",
-    "peerDependencies": {
-        "react": "16.3.2",
-        "react-dom": "16.3.2"
-    },
     "devDependencies": {
         "@babel/cli": "7.0.0-beta.47",
         "@babel/core": "7.0.0-beta.47",
@@ -60,7 +56,8 @@
         "jest-environment-jsdom-global": "1.0.3",
         "jest-raw-loader": "1.0.1",
         "react": "16.3.2",
-        "react-dom": "16.3.2"
+        "react-dom": "16.3.2",
+        "react-test-renderer": "^16.7.0"
     },
     "dependencies": {
         "babel-polyfill": "6.26.0"

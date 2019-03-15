@@ -1,16 +1,20 @@
+import React from 'react';
+import { render } from 'react-dom';
+
 import DOMRegistry from '../DOMRegistry';
-import RDCSectionDOM from '../../../sample/src/components/rdcSection/RDCSectionDOM';
+import rdcSectionDOM from '../__mocks__/rdcSection/RDCSectionDOM';
 import domHtml from '../__mocks__/dom.html';
 
 document.body.innerHTML = domHtml;
 
 describe('DOM Registry', () => {
-    const rdcSection = new RDCSectionDOM();
-    const domRegistry = new DOMRegistry(document);
+    const domRegistry = new DOMRegistry(React, render);
 
     domRegistry.register({
-        rdcSection
+        rdcSectionDOM
     });
+
+    domRegistry.init(document);
 
     it('if supplied a document, registry returns document', () => {
         expect(domRegistry.element).toBe(document);
@@ -19,8 +23,10 @@ describe('DOM Registry', () => {
     it('only has one node name', () => {
         expect(domRegistry.nodeNames[0]).toBe('rdc-section');
     });
-
     it('section has properties', () => {
-        expect(domRegistry.components['rdcSection'].props.title).toBe('Problem');
+        expect(domRegistry.components['rdcSectionDOM'].rendered[0].reactElement.props.title).toBe('Problem');
+    });
+    it('ref is populated since RDCSectionComponent is a class based react component (stateful)', () => {
+        expect(domRegistry.components['rdcSectionDOM'].rendered[0].ref.props.title).toBe('Problem');
     });
 });
