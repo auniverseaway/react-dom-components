@@ -13,6 +13,9 @@ React DOM Components are a technology agnostic way to get DOM properties (attrib
 * Custom Element Polyfill
 
 ## Version History
+### 2.0.1
+* Updated dependencies
+
 ### 2.0.0
 * API Change - Bring your own React Version - See docs below.
 * Updated dependencies
@@ -60,6 +63,7 @@ The DOM Model is what maps DOM attributes, text content, and child elements to p
 ```js
 // file: HelloWorldModel.js
 import { DOMModel } from 'react-dom-components';
+
 class HelloWorldModel extends DOMModel {
     constructor(element) {
         super(element);
