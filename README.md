@@ -10,9 +10,15 @@ React DOM Components are a technology agnostic way to get DOM properties (attrib
 ## Requirements
 * An ES6 development environment
 * React & React DOM
+
+## Optional Requirements (for older browsers)
 * Custom Element Polyfill
+* Babel Polyfill
 
 ## Version History
+### 3.0.0
+* Remove babel polyfill from compile
+
 ### 2.0.1
 * Updated dependencies
 
